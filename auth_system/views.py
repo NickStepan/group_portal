@@ -3,8 +3,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 
-def index(request):
-    pass
 
 def register(request):
     if request.method == "POST":

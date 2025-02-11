@@ -1,5 +1,6 @@
 const logo = document.getElementById('logo');
 const logodiv = logo.querySelector('div');
+const search = document.querySelector('search input');
 
 
 let animation = lottie.loadAnimation({
@@ -7,10 +8,7 @@ let animation = lottie.loadAnimation({
     renderer: 'svg',  
     loop: false,     
     autoplay: false, 
-    path: `${static}graphics/lottie/unitedflow.json`,
-    rendererSettings: {
-        viewBox: '0 0 500 500'
-    }
+    path: `${static}graphics/lottie/unitedflow.json`
 });
 
 animation.addEventListener('DOMLoaded', function() {
@@ -37,3 +35,12 @@ logo.addEventListener('mouseenter', () => {
     }
     
 });
+
+search.addEventListener('focus', () => {
+    search.placeholder = 'Пошук...'
+});
+
+search.addEventListener('blur', () => {
+    search.placeholder = 'S'
+});
+

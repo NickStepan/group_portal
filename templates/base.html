@@ -11,6 +11,14 @@
     {% block head %}
     {% endblock %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.0/lottie.min.js"></script>
+    <style>
+        :root {
+            --bg-col: white;
+            --head-col: orange;
+            --text-col: black;
+            --el-col: white;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,7 +32,7 @@
         </div>
         <search id="search">
             <form action="...search">
-                <input type="text">
+                <input type="search" placeholder="S">
                 <button type="submit"></button>
             </form>
         </search>
@@ -37,7 +45,7 @@
         {% endblock %}
     </div>
     <script>
-        const static = '{% static '' %}';
+        const static = "{% static '' %}";
     </script>
     <script src="{% static 'js/index.js' %}"></script>
     {% block scripts %}

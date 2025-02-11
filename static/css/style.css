@@ -131,7 +131,7 @@ search button {
     border: none;
     opacity: 0;
     pointer-events: none;
-    background: color-mix(in srgb, var(--el-col) 90%, black);
+    background: color-mix(in srgb, var(--el-col), rgb(73, 73, 73) var(--mix-percentage));
     font-size: 3vh;
     transition: .2s;
     cursor: pointer;
@@ -147,7 +147,7 @@ search:has(input:focus, input:not(:placeholder-shown)) #clear {
 }
 
 search button:hover {
-    background: color-mix(in srgb, var(--el-col) 85%, black);
+    background: color-mix(in srgb, var(--el-col), black var(--mix-percentage));
 }
 
 #menu, #theme {
@@ -170,9 +170,12 @@ search button:hover {
     right: 13vh;
 }
 
-:is(#theme, #menu) svg * {
-    fill: var(--text-col);
+:is(#theme, #menu) svg path[stroke-linecap="round"] {
     stroke: var(--text-col);
+}
+
+:is(#theme, #menu) svg path {
+    fill: var(--text-col);
 }
 
 .content {

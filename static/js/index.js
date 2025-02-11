@@ -109,6 +109,20 @@ menuanim2.addEventListener('complete', () => {
     menuanim.goToAndStop(0, true);
 });
 
+themeanim.addEventListener('complete', () => {
+    isplayingtheme = false;
+    themeanim2.renderer.svgElement.style.display = 'block';
+    themeanim.renderer.svgElement.style.display = 'none';
+    themeanim2.goToAndStop(0, true);
+});
+
+themeanim2.addEventListener('complete', () => {
+    isplayingtheme = false;
+    themeanim.renderer.svgElement.style.display = 'block';
+    themeanim2.renderer.svgElement.style.display = 'none';
+    themeanim.goToAndStop(0, true);
+});
+
 logo.addEventListener('mouseenter', () => {
     if (!isplaying) {
         isplaying = true;
@@ -140,6 +154,41 @@ menu.addEventListener('click', () => {
             menuanim.play()
         } else {
             menuanim2.play();
+        }
+    }
+});
+
+let isplayingtheme = false;
+
+function setTheme(theme) {
+    if (theme == 'light') {
+        document.documentElement.style.setProperty('--bg-col', 'white');
+        document.documentElement.style.setProperty('--head-col', 'orange');
+        document.documentElement.style.setProperty('--text-col', 'black');
+        document.documentElement.style.setProperty('--el-col', 'white');
+        document.documentElement.style.setProperty('--theme-col', 'white');
+        document.documentElement.style.setProperty('--mix-percentage', '20%');
+    } else {
+        document.documentElement.style.setProperty('--bg-col', 'gray');
+        document.documentElement.style.setProperty('--head-col', 'purple');
+        document.documentElement.style.setProperty('--text-col', 'white');
+        document.documentElement.style.setProperty('--el-col', 'white');
+        document.documentElement.style.setProperty('--theme-col', 'black');
+        document.documentElement.style.setProperty('--mix-percentage', '40%');
+    }
+}
+
+theme.addEventListener('click', () => {
+    if (!isplayingtheme) {
+        isplayingtheme = true;
+        if (getCookie('theme') == 'light') {
+            document.cookie = 'theme=dark;';
+            setTheme('dark');
+            themeanim.play();
+        } else {
+            document.cookie = 'theme=light;';
+            setTheme('light');
+            themeanim2.play();
         }
     }
 });

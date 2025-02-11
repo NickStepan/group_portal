@@ -13,18 +13,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.0/lottie.min.js"></script>
     <style>
         :root {
-            /* {% if cookies.theme == 'light' %}
+            {% if cookies.theme == 'light' %}
                 --bg-col: white;
                 --head-col: orange;
                 --text-col: black;
                 --el-col: white;
-            {% else %} */
-
-            /* {% endif %} */
-            --bg-col: gray;
-            --head-col: purple;
-            --text-col: white;
-            --el-col: white;
+                --theme-col: white;
+                --mix-percentage: 20%;
+            {% else %}
+                --bg-col: gray;
+                --head-col: purple;
+                --text-col: white;
+                --el-col: white;
+                --theme-col: black;
+                --mix-percentage: 40%;
+            {% endif %}
         }
 
         @font-face {

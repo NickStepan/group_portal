@@ -73,7 +73,7 @@ search * {
 
 search:has(input:focus, input:not(:placeholder-shown)) {
     border-radius: 0.5vh;
-    width: 46vh;
+    width: 52vh;
 }
 
 search input {
@@ -135,6 +135,10 @@ search button {
 search:has(input:focus, input:not(:placeholder-shown)) button {
     pointer-events: all;
     opacity: 1;
+}
+
+search:has(input:focus, input:not(:placeholder-shown)) #clear {
+    right: 6vh;
 }
 
 search button:hover {

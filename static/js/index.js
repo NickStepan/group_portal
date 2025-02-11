@@ -1,6 +1,7 @@
 const logo = document.getElementById('logo');
 const logodiv = logo.querySelector('div');
 const search = document.querySelector('search input');
+const clear = document.getElementById('clear');
 
 
 let animation = lottie.loadAnimation({
@@ -31,7 +32,7 @@ animation.addEventListener('complete', function() {
 logo.addEventListener('mouseenter', () => {
     if (!isplaying) {
         isplaying = true;
-        animation.goToAndPlay(0, true);
+        animation.play();
     }
     
 });
@@ -44,3 +45,7 @@ search.addEventListener('blur', () => {
     search.placeholder = '\uE000'
 });
 
+clear.addEventListener('click', () => {
+    search.value = '';
+    search.focus();
+});

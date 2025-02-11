@@ -57,7 +57,9 @@ header {
 
 search {
     position: absolute;
-    left: 35%;
+    top: 50%;
+    left: 45vh;
+    transform: translateY(-50%);
     width: 6vh;
     height: 6vh;
     overflow: hidden;
@@ -65,9 +67,13 @@ search {
     transition: .3s;
 }
 
-search:has(input:focus) {
+search * {
+    font-family: "Icons", Arial, Helvetica, sans-serif;
+}
+
+search:has(input:focus, input:not(:placeholder-shown)) {
     border-radius: 0.5vh;
-    width: 40vh;
+    width: 46vh;
 }
 
 search input {
@@ -82,13 +88,14 @@ search input {
     background: var(--el-col);
     border: none;
     font-size: 3vh;
+    max-width: 40vh;
 }
 
 search input::-webkit-search-cancel-button {
     display: none;
 }
 
-search input:focus {
+search :is(input:focus, input:not(:placeholder-shown)) {
     cursor: text;
 }
 
@@ -98,16 +105,40 @@ search input::placeholder {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: .2s;
+    transition: .2s transform;
 }
 
 search input:hover::placeholder {
     transform: translate(-50%, calc(-50% - 0.5vh));
 }
 
-search input:focus::placeholder {
+search :is(input:focus, input:not(:placeholder-shown))::placeholder {
     transform: translate(0, -50%);
     left: 0;
+}
+
+search button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6vh;
+    height: 6vh;
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+    background: color-mix(in srgb, var(--el-col) 90%, black);
+    font-size: 3vh;
+    transition: .2s;
+    cursor: pointer;
+}
+
+search:has(input:focus, input:not(:placeholder-shown)) button {
+    pointer-events: all;
+    opacity: 1;
+}
+
+search button:hover {
+    background: color-mix(in srgb, var(--el-col) 85%, black);
 }
 
 .content {

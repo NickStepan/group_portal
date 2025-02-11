@@ -18,11 +18,16 @@
             --text-col: black;
             --el-col: white;
         }
+
+        @font-face {
+            font-family: 'Icons';
+            src: url("{% static 'fonts/ArialIcons.ttf' %}") format('truetype');
+        }
     </style>
 </head>
 <body>
     <header>
-        <div id="logo">
+        <div id="logo" title="Логтип">
             <div>
                 <noscript>
                     {% loadsvg 'graphics/svg/logo.svg' %}
@@ -30,10 +35,10 @@
             </div>
             <p>UnitedFlow</p>
         </div>
-        <search id="search">
+        <search id="search" title="Пошук">
             <form action="...search">
-                <input type="search" placeholder="S">
-                <button type="submit"></button>
+                <input type="search" placeholder="&#xE000">
+                <button type="submit">&#xE000</button>
             </form>
         </search>
         <nav>

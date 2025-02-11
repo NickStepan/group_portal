@@ -41,6 +41,6 @@ search.addEventListener('focus', () => {
 });
 
 search.addEventListener('blur', () => {
-    search.placeholder = 'S'
+    search.placeholder = '\uE000'
 });
 

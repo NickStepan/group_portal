@@ -13,6 +13,10 @@ header {
     z-index: 9999;
 }
 
+body {
+    background: var(--bg-col);
+}
+
 #logo {
     position: absolute;
     display: flex;
@@ -146,7 +150,7 @@ search button:hover {
     background: color-mix(in srgb, var(--el-col) 85%, black);
 }
 
-#menu {
+#menu, #theme {
     position: absolute;
     height: 8vh;
     width: 8vh;
@@ -156,10 +160,19 @@ search button:hover {
     cursor: pointer;
 }
 
-#menu svg {
+:is(#menu, #theme) svg {
     position: absolute;
     width: 100%;
     height: 100%;
+}
+
+#theme {
+    right: 13vh;
+}
+
+:is(#theme, #menu) svg * {
+    fill: var(--text-col);
+    stroke: var(--text-col);
 }
 
 .content {

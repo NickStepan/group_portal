@@ -3,7 +3,14 @@ const logodiv = logo.querySelector('div');
 const search = document.querySelector('search input');
 const clear = document.getElementById('clear');
 const menu = document.getElementById('menu');
+const theme = document.getElementById('theme');
 
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
 let animation = lottie.loadAnimation({
     container: logodiv,
@@ -29,6 +36,23 @@ let menuanim2 = lottie.loadAnimation({
     path: `${static}graphics/lottie/menu-b.json`
 });
 
+let themeanim = lottie.loadAnimation({
+    container: theme,
+    renderer: 'svg',   
+    loop: false,     
+    autoplay: false, 
+    path: `${static}graphics/lottie/theme-f.json`
+});
+
+let themeanim2 = lottie.loadAnimation({
+    container: theme,
+    renderer: 'svg',   
+    loop: false,     
+    autoplay: false, 
+    path: `${static}graphics/lottie/theme-b.json`
+});
+
+
 animation.addEventListener('DOMLoaded', () => {
     let svgElement = animation.renderer.svgElement;
 
@@ -45,6 +69,22 @@ menuanim2.addEventListener('DOMLoaded', () => {
         svgElement.style.display = 'none';
     }
 });
+
+themeanim2.addEventListener('DOMLoaded', () => {
+    let svgElement = themeanim.renderer.svgElement;
+    let svgElement2 = themeanim2.renderer.svgElement;
+
+    if (svgElement && svgElement2) {
+        console.log('da');
+        
+        if (getCookie('theme') === 'light') {
+            svgElement2.style.display = 'none';
+        } else {
+            svgElement.style.display = 'none';
+        }
+    }
+});
+
 
 let isplaying = false;
 

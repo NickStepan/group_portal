@@ -13,9 +13,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.0/lottie.min.js"></script>
     <style>
         :root {
-            --bg-col: white;
-            --head-col: orange;
-            --text-col: black;
+            /* {% if cookies.theme == 'light' %}
+                --bg-col: white;
+                --head-col: orange;
+                --text-col: black;
+                --el-col: white;
+            {% else %} */
+
+            /* {% endif %} */
+            --bg-col: gray;
+            --head-col: purple;
+            --text-col: white;
             --el-col: white;
         }
 
@@ -49,8 +57,13 @@
         </div>
         <div id="theme">
             <noscript>
-
+                {% if cookies.theme == 'light' %}
+                    {% loadsvg 'graphics/svg/day.svg' %}
+                {% else %}
+                    {% loadsvg 'graphics/svg/night.svg' %}
+                {% endif %}
             </noscript>
+
         </div>
         <nav>
 
@@ -62,7 +75,6 @@
     </div>
     <script>
         const static = "{% static '' %}";
-        let theme = "{{ cookies.theme }}";
     </script>
     <script src="{% static 'js/index.js' %}"></script>
     {% block scripts %}

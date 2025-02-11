@@ -170,7 +170,7 @@ function setTheme(theme) {
         document.documentElement.style.setProperty('--mix-percentage', '20%');
     } else {
         document.documentElement.style.setProperty('--bg-col', 'gray');
-        document.documentElement.style.setProperty('--head-col', 'purple');
+        document.documentElement.style.setProperty('--head-col', '#590059');
         document.documentElement.style.setProperty('--text-col', 'white');
         document.documentElement.style.setProperty('--el-col', 'white');
         document.documentElement.style.setProperty('--theme-col', 'black');

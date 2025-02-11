@@ -42,9 +42,14 @@
                 <button type="submit">&#xE000</button>
             </form>
         </search>
-        <div id="burger">
+        <div id="menu">
             <noscript>
-                
+                {% loadsvg 'graphics/svg/menu.svg' %}
+            </noscript>
+        </div>
+        <div id="theme">
+            <noscript>
+
             </noscript>
         </div>
         <nav>
@@ -57,6 +62,7 @@
     </div>
     <script>
         const static = "{% static '' %}";
+        let theme = "{{ cookies.theme }}";
     </script>
     <script src="{% static 'js/index.js' %}"></script>
     {% block scripts %}

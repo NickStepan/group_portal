@@ -38,6 +38,7 @@
 </head>
 <body>
     <header>
+        <div id="blur"></div>
         <div id="logo" title="Логтип">
             <div>
                 <noscript>
@@ -69,12 +70,18 @@
 
         </div>
         <div id="user" title="Мій акаунт">
+            <input type="checkbox">
             <div>
                 &#xE002
             </div>
         </div>
-        <nav>
-
+        <nav id="horizontal">
+            
+        </nav>
+        <nav id="side">
+            <div class="logo">
+                {% loadsvg 'graphics/svg/logo.svg' %}
+            </div>
         </nav>
     </header>
     <div class="content">

@@ -4,6 +4,7 @@ const search = document.querySelector('search input');
 const clear = document.getElementById('clear');
 const menu = document.getElementById('menu');
 const theme = document.getElementById('theme');
+const slide = document.getElementById('slide');
 
 
 function getCookie(name) {
@@ -155,6 +156,14 @@ menu.addEventListener('click', () => {
         } else {
             menuanim2.play();
         }
+    }
+});
+
+window.addEventListener('click', event => {
+    console.log(event.target)
+    if (!slide.contains(event.target) && !event.target.matches('#side, #side *') && opened) {
+        opened = false
+        menuanim2.play();
     }
 });
 

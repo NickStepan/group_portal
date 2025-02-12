@@ -153,7 +153,6 @@ menu.addEventListener('click', () => {
     if (!isplayingmenu) {
         isplayingmenu = true;
         if (!opened) {
-            openSide();
             menuanim.play()
         } else {
             menuanim2.play();
@@ -161,21 +160,8 @@ menu.addEventListener('click', () => {
     }
 });
 
-function openSide() {
-    blurs.style.opacity = '1';
-}
-
-function closeSide() {
-    
-}
-
-window.addEventListener('click', event => {
-    console.log(event.target)
-    if (!side.contains(event.target) && !event.target.matches('#side, #side *') && opened) {
-        opened = false
-        isplayingmenu = true
-        menuanim2.play();
-    }
+menu.addEventListener('blur', () => {
+    if (opened)
 });
 
 let isplayingtheme = false;

@@ -261,11 +261,23 @@ search button:hover {
     position: fixed;
     display: block;
     top: 0;
-    right: -100%;
+    right: -50vh;
     height: 100%;
     width: 50vh;
     background: var(--head-col);
     z-index: 10000;
+    transition: .6s;
+}
+
+header:has(#menu input:checked) #side {
+    right: 0;
+}
+
+#side .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--el-col);
 }
 
 .content {

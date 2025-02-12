@@ -98,6 +98,7 @@ animation.addEventListener('complete', function() {
 menuanim.addEventListener('complete', () => {
     isplayingmenu = false;
     opened = true;
+    menucheckbox.disabled = false;
     menuanim.renderer.svgElement.style.display = 'none';
     menuanim2.renderer.svgElement.style.display = 'block';
     menuanim2.goToAndStop(0, true);
@@ -106,6 +107,7 @@ menuanim.addEventListener('complete', () => {
 menuanim2.addEventListener('complete', () => {
     isplayingmenu = false;
     opened = false;
+    menucheckbox.disabled = false;
     menuanim.renderer.svgElement.style.display = 'block';
     menuanim2.renderer.svgElement.style.display = 'none';
     menuanim.goToAndStop(0, true);
@@ -153,15 +155,24 @@ menu.addEventListener('click', () => {
     if (!isplayingmenu) {
         isplayingmenu = true;
         if (!opened) {
+            menucheckbox.disabled = true;
             menuanim.play()
         } else {
+            menucheckbox.disabled = true;
             menuanim2.play();
         }
     }
 });
 
-menu.addEventListener('blur', () => {
-    if (opened)
+const menucheckbox = menu.querySelector('input');
+
+menucheckbox.addEventListener('blur', () => {
+    if (opened) {
+        opened = false;
+        isplayingmenu = true;
+        menucheckbox.disabled = true;
+        menuanim2.play();
+    }
 });
 
 let isplayingtheme = false;

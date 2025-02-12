@@ -4,7 +4,8 @@ const search = document.querySelector('search input');
 const clear = document.getElementById('clear');
 const menu = document.getElementById('menu');
 const theme = document.getElementById('theme');
-const slide = document.getElementById('slide');
+const side = document.getElementById('side');
+const blurs = document.getElementById('blur');
 
 
 function getCookie(name) {
@@ -152,6 +153,7 @@ menu.addEventListener('click', () => {
     if (!isplayingmenu) {
         isplayingmenu = true;
         if (!opened) {
+            openSide();
             menuanim.play()
         } else {
             menuanim2.play();
@@ -159,10 +161,19 @@ menu.addEventListener('click', () => {
     }
 });
 
+function openSide() {
+    blurs.style.opacity = '1';
+}
+
+function closeSide() {
+    
+}
+
 window.addEventListener('click', event => {
     console.log(event.target)
-    if (!slide.contains(event.target) && !event.target.matches('#side, #side *') && opened) {
+    if (!side.contains(event.target) && !event.target.matches('#side, #side *') && opened) {
         opened = false
+        isplayingmenu = true
         menuanim2.play();
     }
 });

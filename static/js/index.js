@@ -155,10 +155,10 @@ menu.addEventListener('click', () => {
     if (!isplayingmenu) {
         isplayingmenu = true;
         if (!opened) {
-            menucheckbox.disabled = true;
+            // menucheckbox.disabled = true;
             menuanim.play()
         } else {
-            menucheckbox.disabled = true;
+            // menucheckbox.disabled = true;
             menuanim2.play();
         }
     }
@@ -167,10 +167,12 @@ menu.addEventListener('click', () => {
 const menucheckbox = menu.querySelector('input');
 
 menucheckbox.addEventListener('blur', () => {
+    console.log('da');
+    
     if (opened) {
-        opened = false;
         isplayingmenu = true;
-        menucheckbox.disabled = true;
+        // menucheckbox.disabled = true;
+        menucheckbox.checked = false;
         menuanim2.play();
     }
 });

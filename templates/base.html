@@ -53,12 +53,12 @@
                 <button type="submit">&#xE000</button>
             </form>
         </search>
-        <div id="menu">
+        <div id="menu" title="Меню">
             <noscript>
                 {% loadsvg 'graphics/svg/menu.svg' %}
             </noscript>
         </div>
-        <div id="theme">
+        <div id="theme" title="Тема">
             <noscript>
                 {% if cookies.theme == 'light' %}
                     {% loadsvg 'graphics/svg/day.svg' %}
@@ -67,6 +67,11 @@
                 {% endif %}
             </noscript>
 
+        </div>
+        <div id="user" title="Мій акаунт">
+            <div>
+                &#xE002
+            </div>
         </div>
         <nav>
 

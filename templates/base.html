@@ -84,13 +84,19 @@
                 <div>
                     {% loadsvg 'graphics/svg/logo.svg' %}
                 </div>
+                <p>UnitedFlow</p>
+            </div>
+            <div class="items">
+                <details>
+                    <summary>Акаунт</summary>
+                </details>
             </div>
         </nav>
     </header>
-    <div class="content">
+    <main>
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
     <script>
         const static = "{% static '' %}";
     </script>

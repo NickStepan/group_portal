@@ -297,7 +297,35 @@ header:has(#menu input:checked) #side {
 
 }
 
-.content {
+.logo p {
+    position: relative;
+    margin-left: 1vh;
+    font-size: 4vh;
+}
+
+.items {
+    position: absolute;
+    top: 13vh;
+    width: 100%;
+    height: calc(100% - 13vh);
+}
+
+.items details summary, .items div p{
+    list-style-type: none;
+    display: inline-flex;
+    align-items: center;
+    height: 5vh;
+}
+
+.items :is(details, div) {
+    position: relative;
+    width: 100%;
+    height: 5vh;
+    font-size: 3vh;
+    background: green;
+}
+
+main {
     position: relative;
     margin-top: 14vh;
 }

@@ -311,15 +311,19 @@ header:has(#menu input:checked) #side {
 }
 
 .items details summary, .items div p.summary{
+    position: relative;
     list-style-type: none;
     height: 6vh;
+    border-radius: 1vh;
+    cursor: pointer;
+    background: green;
     width: 100%;
     display: inline-flex;
     align-items: center;
     font-family: "Icons", Arial, Helvetica, sans-serif;
 }
 
-.items details::after {
+.items details summary::after {
     content: "\e003";
     position: absolute;
     display: inline-block;
@@ -333,12 +337,15 @@ header:has(#menu input:checked) #side {
 .items :is(details, div) {
     position: relative;
     width: calc(100% - 1vh);
-    height: 6vh;
+    max-height: 6vh;
     font-size: 3vh;
-    background: green;
     margin: 0.5vh;
-    border-radius: 1vh;
-    cursor: pointer;
+    transition: .2s;
+    overflow: hidden;
+}
+
+.items details[open] {
+    max-height: 13vh;
 }
 
 main {

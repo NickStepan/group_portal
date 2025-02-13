@@ -313,6 +313,7 @@ header:has(#menu input:checked) #side {
 .items details summary, .items div p.summary{
     list-style-type: none;
     height: 6vh;
+    width: 100%;
     display: inline-flex;
     align-items: center;
     font-family: "Icons", Arial, Helvetica, sans-serif;
@@ -320,7 +321,13 @@ header:has(#menu input:checked) #side {
 
 .items details::after {
     content: "\e003";
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    right: 2vh;
     font-family: "Icons", Arial, Helvetica, sans-serif;
+    pointer-events: none;
 }
 
 .items :is(details, div) {

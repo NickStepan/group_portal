@@ -6,7 +6,7 @@ const menu = document.getElementById('menu');
 const theme = document.getElementById('theme');
 const side = document.getElementById('side');
 const blurs = document.getElementById('blur');
-const detailsElements = document.querySelectorAll()
+const detailsElements = document.querySelectorAll('.items details');
 
 
 function getCookie(name) {
@@ -209,4 +209,14 @@ theme.addEventListener('click', () => {
             themeanim2.play();
         }
     }
+});
+
+
+detailsElements.forEach(e => {
+    console.log(e);
+    
+    e.addEventListener('click', () => {
+        console.log(e.getAttribute('data-h'));
+        
+    });
 });

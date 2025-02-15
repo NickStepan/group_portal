@@ -214,17 +214,19 @@ theme.addEventListener('click', () => {
 detailsElements.forEach(e => {
     let summary = e.querySelector('summary');
 
-    e.style.transition = `${e.getAttribute('data-t')}s`;
+    let eattr = e.getAttribute('data-t');
 
-    summary.addEventListener('click', event => {
+    e.style.transition = `${eattr}s`;
+    
+    summary.addEventListener('click', (attr => event => {
         if (e.open) {
             event.preventDefault();
           
             setTimeout(() => {
                 e.open = false;
-            }, 300);
+            }, attr);
         }
-    });
+    })(parseFloat(eattr) * 1000));
     
     summary.addEventListener('click', (attr => event => {
         if (!e.open) {

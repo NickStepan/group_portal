@@ -332,6 +332,11 @@ header:has(#menu input:checked) #side {
     right: 2vh;
     font-family: "Icons", Arial, Helvetica, sans-serif;
     pointer-events: none;
+    transition: .3s;
+}
+
+.items details[open] summary::after {
+    transform: translateY(-50%) rotate(-90deg);
 }
 
 .items :is(details, div) {
@@ -342,10 +347,6 @@ header:has(#menu input:checked) #side {
     margin: 0.5vh;
     transition: .2s;
     overflow: hidden;
-}
-
-.items details[open] {
-    max-height: 13vh;
 }
 
 main {

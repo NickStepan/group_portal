@@ -215,9 +215,9 @@ detailsElements.forEach(e => {
     
     e.addEventListener('toggle', ((attr) => () => {
         if (e.open) {
-            e.style            
+            e.style.height = `${attr}vh`;            
         } else {
-            
+            e.style.removeProperty('height');
         }
         
     })(e.getAttribute('data-h')));

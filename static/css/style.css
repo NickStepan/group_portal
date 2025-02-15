@@ -342,17 +342,34 @@ header:has(#menu input:checked) #side {
     transform: translateY(-50%) rotate(-90deg);
 }
 
-.items :is(details, div) {
+.items > :is(details, div) {
     position: relative;
-    width: calc(100% - 1vh);
+    width: calc(100% - 2vh);
     height: 6vh;
     font-size: 3vh;
-    margin: 0.5vh;
+    margin: 1vh;
     transition: .2s;
     overflow: hidden;
 }
 
-.items :is(details:hover, details[opened], div:hover) :is(summary, .summary) {
+.items > :is(details:hover, details[opened], div:hover) > :is(summary, .summary) {
+    background: color-mix(in srgb, var(--head-col) 80%, white);
+}
+
+.items > details > div {
+    position: relative;
+    font-size: 2.5vh;
+    margin: 1vh;
+    margin-left: 1.5vh;
+    padding: 1vh;
+    width: calc(100% - 4vh);
+    border-radius: 1vh;
+    background: var(--head-col);
+    transition: .2s;
+    cursor: pointer;
+}
+
+.items > details > div:hover {
     background: color-mix(in srgb, var(--head-col) 80%, white);
 }
 

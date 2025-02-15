@@ -213,12 +213,22 @@ theme.addEventListener('click', () => {
 
 detailsElements.forEach(e => {
     
-    e.addEventListener('toggle', ((attr) => () => {
+    e.addEventListener('toggle', (attr => event => {
         if (e.open) {
+            e.setAttribute('opened', '');
             e.style.height = `${attr}vh`;            
         } else {
-            e.style.removeProperty('height');
+            e.removeAttribute('opened');
+            e.open = true;
+            e.style.height = '6vh';
         }
         
     })(e.getAttribute('data-h')));
+    
+    e.addEventListener('transitionend', () => {        
+        if (e.getAttribute('opened') === null) {
+            console.log('a');
+        }
+            
+    });
 });

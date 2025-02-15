@@ -6,6 +6,7 @@ const menu = document.getElementById('menu');
 const theme = document.getElementById('theme');
 const side = document.getElementById('side');
 const blurs = document.getElementById('blur');
+const detailsElements = document.querySelectorAll()
 
 
 function getCookie(name) {

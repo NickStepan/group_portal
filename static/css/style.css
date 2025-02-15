@@ -284,6 +284,8 @@ header:has(#menu input:checked) #side {
 }
 
 .logo div svg {
+    position: absolute;
+    top: 0;
     scale: 1.05;
 }
 
@@ -316,11 +318,12 @@ header:has(#menu input:checked) #side {
     height: 6vh;
     border-radius: 1vh;
     cursor: pointer;
-    background: green;
+    background: var(--head-col);
     width: 100%;
     display: inline-flex;
     align-items: center;
     font-family: "Icons", Arial, Helvetica, sans-serif;
+    transition: .4s;
 }
 
 .items details summary::after {
@@ -347,6 +350,10 @@ header:has(#menu input:checked) #side {
     margin: 0.5vh;
     transition: .2s;
     overflow: hidden;
+}
+
+.items :is(details:hover, details[open], div:hover) :is(summary, .summary) {
+    background: color-mix(in srgb, var(--head-col) 80%, white);
 }
 
 main {

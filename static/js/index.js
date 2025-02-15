@@ -212,27 +212,23 @@ theme.addEventListener('click', () => {
 });
 
 detailsElements.forEach(e => {
+
+    e.addEventListener('click', event => {
+        if (e.open) {
+            event.preventDefault();
+          
+            setTimeout(() => {
+                e.open = false;
+            }, 300);
+        }
+    });
     
     e.addEventListener('toggle', (attr => event => {
-        if (e.getAttribute('opened') === null) {
+        if (e.open) {
             e.setAttribute('opened', '');
-            e.style.height = `${attr}vh`;            
-        } else {            
-            console.log('da');
-            
-            // e.open = true;
-            console.log('ne');
-            
-            e.removeAttribute('opened');
-            e.style.height = '6vh';
+            e.style.height = `${attr}vh`;
         }
         
     })(e.getAttribute('data-h')));
-    
-    // e.addEventListener('transitionend', () => {        
-    //     if (e.getAttribute('opened') === null) {
-    //         console.log('a');
-    //     }
-            
-    // });
+
 });

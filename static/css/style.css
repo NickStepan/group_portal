@@ -338,7 +338,7 @@ header:has(#menu input:checked) #side {
     transition: .3s;
 }
 
-.items details[opened] summary::after {
+.items details[open] summary::after {
     transform: translateY(-50%) rotate(-90deg);
 }
 
@@ -352,7 +352,7 @@ header:has(#menu input:checked) #side {
     overflow: hidden;
 }
 
-.items :is(details:hover, details[opened], div:hover) :is(summary, .summary) {
+.items :is(details:hover, details[open], div:hover) :is(summary, .summary) {
     background: color-mix(in srgb, var(--head-col) 80%, white);
 }
 

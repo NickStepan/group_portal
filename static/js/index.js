@@ -211,12 +211,14 @@ theme.addEventListener('click', () => {
     }
 });
 
-
 detailsElements.forEach(e => {
-    console.log(e);
     
-    e.addEventListener('click', () => {
-        console.log(e.getAttribute('data-h'));
+    e.addEventListener('toggle', ((attr) => () => {
+        if (e.open) {
+            e.style            
+        } else {
+            
+        }
         
-    });
+    })(e.getAttribute('data-h')));
 });

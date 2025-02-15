@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block head %}
+    {% load keys %}
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse; /* Об'єднує рамки */
+    }
+    th, td {
+      padding: 5px;  /* Додає відступи для кращого вигляду */
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Понеділок ({{ days|get_key:"m" }})</th>
+                <th>Вівторок ({{ days|get_key:"t" }})</th>
+                <th>Середа ({{ days|get_key:"w" }})</th>
+                <th>Четверг ({{ days|get_key:"th" }})</th>
+                <th>П'ятниця ({{ days|get_key:"f" }})</th>
+                <th>Субота ({{ days|get_key:"s" }})</th>
+                <th>Вчитель</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in info %}
+                    <tr>
+                        <td>{{subject.title}}</td>
+                        {% for day in days_of_week %}
+                            <td>
+                                {% if weekly_schedule|get_key:subject|get_key:day %}
+                                    {% if weekly_schedule|get_key:subject|get_key:day|get_key:"is_final" %} <!--Оцінка-->
+                                        {{ weekly_schedule|get_key:subject|get_key:day|get_key:"mark"}}
+                                    {% else %}  <!--Оцінка олівцем-->
+                                        ({{ weekly_schedule|get_key:subject|get_key:day|get_key:"mark" }})
+                                    {% endif %}
+                                {% else %}
+                                
+                                    -
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                        <td>{{subject.teacher}}</td>
+                    </tr>
+        
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -49,3 +49,9 @@ search input {
     display: inline-block;
     width: vw;
 }
+
+
+main{
+    position: relative;
+    margin-top: 14vh;
+}

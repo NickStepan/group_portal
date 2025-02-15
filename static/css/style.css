@@ -345,11 +345,16 @@ header:has(#menu input:checked) #side {
 .items :is(details, div) {
     position: relative;
     width: calc(100% - 1vh);
+    max-height: 12vh;
     height: 6vh;
     font-size: 3vh;
     margin: 0.5vh;
     transition: .2s;
     overflow: hidden;
+}
+
+details[open] {
+    height: 15vh;
 }
 
 .items :is(details:hover, details[open], div:hover) :is(summary, .summary) {

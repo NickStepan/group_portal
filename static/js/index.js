@@ -212,8 +212,11 @@ theme.addEventListener('click', () => {
 });
 
 detailsElements.forEach(e => {
+    let summary = e.querySelector('summary');
 
-    e.addEventListener('click', event => {
+    e.style.transition = `${e.getAttribute('data-t')}s`;
+
+    summary.addEventListener('click', event => {
         if (e.open) {
             event.preventDefault();
           
@@ -223,7 +226,7 @@ detailsElements.forEach(e => {
         }
     });
     
-    e.addEventListener('click', (attr => event => {
+    summary.addEventListener('click', (attr => event => {
         if (!e.open) {
             e.setAttribute('opened', '');
             e.style.height = `${attr}vh`;

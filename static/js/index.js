@@ -223,10 +223,13 @@ detailsElements.forEach(e => {
         }
     });
     
-    e.addEventListener('toggle', (attr => event => {
-        if (e.open) {
+    e.addEventListener('click', (attr => event => {
+        if (!e.open) {
             e.setAttribute('opened', '');
             e.style.height = `${attr}vh`;
+        } else {
+            e.style.removeProperty('height');
+            e.removeAttribute('opened');
         }
         
     })(e.getAttribute('data-h')));

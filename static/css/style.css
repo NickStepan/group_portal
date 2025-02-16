@@ -178,7 +178,8 @@ search button:hover {
     fill: var(--text-col);
 }
 
-.content {
+
+main{
     position: relative;
     margin-top: 14vh;
 }

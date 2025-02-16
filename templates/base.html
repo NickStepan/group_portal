@@ -72,14 +72,15 @@
 
         </nav>
     </header>
-    <div class="content">
+    <main>
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
     <script>
         const static = "{% static '' %}";
     </script>
     <script src="{% static 'js/index.js' %}"></script>
+
     {% block scripts %}
     {% endblock %}
 </body>

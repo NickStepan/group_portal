@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("auth_system.urls")),
     path('', include('main.urls')),
+    path('', include('diary.urls')),
+    path('calendar/', include('calendar_events.urls')),  # Підключаємо маршрути календаря
 ]

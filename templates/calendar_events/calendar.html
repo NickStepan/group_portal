@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Календар {{ month }}/{{ year }}</h2>
+    <style>
+        table {
+            width: 50%;  
+            font-size: 20px;  /* Збільшуємо шрифт */
+            border-collapse: collapse;  /* Щоб не було проміжків між клітинками */
+        }
+        th, td {
+            padding: 15px;  /* Більше простору всередині клітинок */
+            text-align: center;
+            border: 1px solid #ddd;  /* Лінії між клітинками */
+        }
+        th {
+            background-color: #f2f2f2;  /* Легкий фон для заголовків стовпців */
+        }
+    </style>
+    <div>{{ calendar|safe }}</div>
+{% endblock %}

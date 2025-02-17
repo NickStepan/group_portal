@@ -11,3 +11,10 @@ def get_user_data(request: HttpRequest) -> UserData:
 def get_cookie_data(request: HttpRequest) -> CookieData:
     cookies = request.COOKIES
     return CookieData(theme=cookies.get('theme', 'light'))
+
+
+def add_cookies(context: dict):
+    ...
+
+def setup_context(context: dict):
+    ...

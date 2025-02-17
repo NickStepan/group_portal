@@ -37,11 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'auth_system',
     'diary',
     'main',
-    'calendar_events',  # Додаємо додаток календаря
+    'calendar_events',
 ]
 
 
@@ -53,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'main.middleware.CookieMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'

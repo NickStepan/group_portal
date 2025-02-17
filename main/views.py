@@ -1,11 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render
-
-from utils import get_cookie_data
+from utils import setup_context
 
 
 def index(request: HttpRequest):
-
-    resp = render(request, 'base.html', context={'cookies': get_cookie_data(request)})
-    print(resp.content)
-    return resp
+    return render(request, 'base.html', context=setup_context(request))

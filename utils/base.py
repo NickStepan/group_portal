@@ -1,3 +1,4 @@
+from copy import deepcopy
 from django.http import HttpRequest
 from .data import UserData, CookieData
 
@@ -13,8 +14,12 @@ def get_cookie_data(request: HttpRequest) -> CookieData:
     return CookieData(theme=cookies.get('theme', 'light'))
 
 
-def add_cookies(context: dict):
-    ...
+def setup_context(request, context: dict | None = None) -> dict:
+    cookies = {'cookies': get_cookie_data(request)}
+    if context is None:
+        return cookies
 
-def setup_context(context: dict):
-    ...
+    context = deepcopy(context)
+    context.update(cookies)
+
+    return context

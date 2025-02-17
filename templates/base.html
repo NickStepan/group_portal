@@ -38,6 +38,7 @@
 </head>
 <body>
     <header>
+        <div id="blur"></div>
         <div id="logo" title="Логтип">
             <div>
                 <noscript>
@@ -53,12 +54,13 @@
                 <button type="submit">&#xE000</button>
             </form>
         </search>
-        <div id="menu">
+        <div id="menu" title="Меню">
+            <input type="checkbox">
             <noscript>
                 {% loadsvg 'graphics/svg/menu.svg' %}
             </noscript>
         </div>
-        <div id="theme">
+        <div id="theme" title="Тема">
             <noscript>
                 {% if cookies.theme == 'light' %}
                     {% loadsvg 'graphics/svg/day.svg' %}
@@ -68,8 +70,31 @@
             </noscript>
 
         </div>
-        <nav>
-
+        <div id="user" title="Мій акаунт">
+            <input type="checkbox">
+            <div>
+                &#xE002
+            </div>
+        </div>
+        <nav id="horizontal">
+            
+        </nav>
+        <nav id="side">
+            <div class="logo">
+                <div>
+                    {% loadsvg 'graphics/svg/logo.svg' %}
+                </div>
+                <p>UnitedFlow</p>
+            </div>
+            <div class="items">
+                <details data-h="30" data-t="3">
+                    <summary role="button">&#xE002 Акаунт</summary>
+                    <div role="button">Профіль</div>
+                    <div role="button">Налаштування акаунту</div>
+                    <div role="button">Приватність і безпека</div>
+                    <div role="button">Вийти</div>
+                </details>
+            </div>
         </nav>
     </header>
     <main>

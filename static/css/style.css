@@ -10,11 +10,28 @@ header {
     background: var(--head-col);
     width: 100%;
     height: 13vh;
-    z-index: 9999;
+    z-index: 999;
 }
 
 body {
     background: var(--bg-col);
+}
+
+#blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(128, 128, 128, 0.564);
+    transition: .3s;
+    opacity: 0;
+}
+
+header:has(#menu input:checked) #blur {
+    opacity: 1;
 }
 
 #logo {
@@ -150,14 +167,23 @@ search button:hover {
     background: color-mix(in srgb, var(--el-col), black var(--mix-percentage));
 }
 
-#menu, #theme {
+#menu, #theme, #user {
     position: absolute;
     height: 8vh;
     width: 8vh;
     top: 50%;
     right: 3vh;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(1);
     cursor: pointer;
+    transition: .2s;
+}
+
+#menu {
+    z-index: 10001;
+}
+
+#menu:hover {
+    transform: translateY(-50%) scale(1.1);
 }
 
 :is(#menu, #theme) svg {
@@ -167,7 +193,60 @@ search button:hover {
 }
 
 #theme {
+    right: 23vh;
+    transform: translateY(-50%) scale(0.8);
+    transition: .2s;
+}
+
+#theme:hover {
+    transform: translateY(-50%) scale(1);
+}
+
+#user {
     right: 13vh;
+    background: rgba(255, 255, 255, 0.36);
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+#user div {
+    position: absolute;
+    font-family: "Icons", Arial, Helvetica, sans-serif;
+    top: 50%;
+    left: 50%;
+    background: var(--bg-col);
+    transform: translate(-50%, -50%) scale(1);
+    width: 100%;
+    height: 100%;
+    font-size: 7.5vh;
+    text-align: center;
+    border-radius: 100%;
+    transition: .2s;
+    overflow: hidden;
+
+}
+
+#user:has(input:focus) div {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+#user:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+#user input, #menu input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 1;
+    cursor: pointer;
 }
 
 :is(#theme, #menu) svg path[stroke-linecap="round"] {
@@ -178,6 +257,121 @@ search button:hover {
     fill: var(--text-col);
 }
 
+#side {
+    position: fixed;
+    display: block;
+    top: 0;
+    right: -50vh;
+    height: 100%;
+    width: 50vh;
+    background: var(--head-col);
+    z-index: 10000;
+    transition: .6s;
+}
+
+header:has(#menu input:checked) #side {
+    right: 0;
+}
+
+.logo {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 13vh;
+}
+
+.logo div svg {
+    position: absolute;
+    top: 0;
+    scale: 1.05;
+}
+
+.logo div {
+    position: relative;
+    height: 8vh;
+    width: 8vh;
+    margin-left: 1vh;
+    background: var(--el-col);
+    border-radius: 100%;
+
+}
+
+.logo p {
+    position: relative;
+    margin-left: 1vh;
+    font-size: 4vh;
+}
+
+.items {
+    position: absolute;
+    top: 13vh;
+    width: 100%;
+    height: calc(100% - 13vh);
+}
+
+.items details summary, .items div p.summary{
+    position: relative;
+    list-style-type: none;
+    height: 6vh;
+    border-radius: 1vh;
+    cursor: pointer;
+    background: var(--head-col);
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    font-family: "Icons", Arial, Helvetica, sans-serif;
+    transition: .4s;
+}
+
+.items details summary::after {
+    content: "\e003";
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    right: 2vh;
+    font-family: "Icons", Arial, Helvetica, sans-serif;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.items details[opened] summary::after {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+.items > :is(details, div) {
+    position: relative;
+    width: calc(100% - 2vh);
+    height: 6vh;
+    font-size: 3vh;
+    margin: 1vh;
+    transition: .2s;
+    overflow: hidden;
+}
+
+.items > :is(details:hover, details[opened], div:hover) > :is(summary, .summary) {
+    background: color-mix(in srgb, var(--head-col) 80%, white);
+}
+
+.items > details > div {
+    position: relative;
+    font-size: 2.5vh;
+    margin: 1vh;
+    margin-left: 1.5vh;
+    padding: 1vh;
+    width: calc(100% - 4vh);
+    border-radius: 1vh;
+    background: var(--head-col);
+    transition: .2s;
+    cursor: pointer;
+}
+
+.items > details > div:hover {
+    background: color-mix(in srgb, var(--head-col) 80%, white);
+}
 
 main{
     position: relative;

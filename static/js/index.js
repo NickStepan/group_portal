@@ -4,6 +4,9 @@ const search = document.querySelector('search input');
 const clear = document.getElementById('clear');
 const menu = document.getElementById('menu');
 const theme = document.getElementById('theme');
+const side = document.getElementById('side');
+const blurs = document.getElementById('blur');
+const detailsElements = document.querySelectorAll('.items details');
 
 
 function getCookie(name) {
@@ -75,8 +78,6 @@ themeanim2.addEventListener('DOMLoaded', () => {
     let svgElement2 = themeanim2.renderer.svgElement;
 
     if (svgElement && svgElement2) {
-        console.log('da');
-        
         if (getCookie('theme') === 'light') {
             svgElement2.style.display = 'none';
         } else {
@@ -96,6 +97,7 @@ animation.addEventListener('complete', function() {
 menuanim.addEventListener('complete', () => {
     isplayingmenu = false;
     opened = true;
+    menucheckbox.disabled = false;
     menuanim.renderer.svgElement.style.display = 'none';
     menuanim2.renderer.svgElement.style.display = 'block';
     menuanim2.goToAndStop(0, true);
@@ -104,6 +106,7 @@ menuanim.addEventListener('complete', () => {
 menuanim2.addEventListener('complete', () => {
     isplayingmenu = false;
     opened = false;
+    menucheckbox.disabled = false;
     menuanim.renderer.svgElement.style.display = 'block';
     menuanim2.renderer.svgElement.style.display = 'none';
     menuanim.goToAndStop(0, true);
@@ -151,10 +154,25 @@ menu.addEventListener('click', () => {
     if (!isplayingmenu) {
         isplayingmenu = true;
         if (!opened) {
+            menucheckbox.disabled = true;
             menuanim.play()
         } else {
+            menucheckbox.disabled = true;
             menuanim2.play();
         }
+    }
+});
+
+const menucheckbox = menu.querySelector('input');
+
+window.addEventListener('click', (event) => {
+    const slideElement = document.querySelector('.slide');
+    
+    if (!side.contains(event.target) && !event.target.matches('#side, #side *') && opened) {
+            isplayingmenu = true;
+            menucheckbox.disabled = true;
+            menucheckbox.checked = false;
+            menuanim2.play();
     }
 });
 
@@ -191,4 +209,34 @@ theme.addEventListener('click', () => {
             themeanim2.play();
         }
     }
+});
+
+detailsElements.forEach(e => {
+    let summary = e.querySelector('summary');
+
+    let eattr = e.getAttribute('data-t');
+
+    e.style.transition = `${eattr}s`;
+    
+    summary.addEventListener('click', (attr => event => {
+        if (e.open) {
+            event.preventDefault();
+          
+            setTimeout(() => {
+                e.open = false;
+            }, attr);
+        }
+    })(parseFloat(eattr) * 1000));
+    
+    summary.addEventListener('click', (attr => event => {
+        if (!e.open) {
+            e.setAttribute('opened', '');
+            e.style.height = `${attr}vh`;
+        } else {
+            e.style.removeProperty('height');
+            e.removeAttribute('opened');
+        }
+        
+    })(e.getAttribute('data-h')));
+
 });

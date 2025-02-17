@@ -373,7 +373,7 @@ header:has(#menu input:checked) #side {
     background: color-mix(in srgb, var(--head-col) 80%, white);
 }
 
-main {
+main{
     position: relative;
     margin-top: 14vh;
 }

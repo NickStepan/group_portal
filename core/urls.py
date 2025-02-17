@@ -19,7 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("auth_system.urls")),
-    path('', include('main.urls')),
-    path('calendar/', include('calendar_events.urls')),  # Підключаємо маршрути календаря
+    path('calendar/', include('calendar_events.urls')),  # Додаємо маршрути для календаря
 ]
+

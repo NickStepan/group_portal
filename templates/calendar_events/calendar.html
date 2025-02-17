@@ -4,18 +4,47 @@
     <h2>Календар {{ month }}/{{ year }}</h2>
     <style>
         table {
-            width: 50%;  
-            font-size: 20px;  /* Збільшуємо шрифт */
-            border-collapse: collapse;  /* Щоб не було проміжків між клітинками */
+            width: 50%;
+            font-size: 20px;
+            border-collapse: collapse;
+            margin: 0 auto; /* Центруємо сам календар */
         }
         th, td {
-            padding: 15px;  /* Більше простору всередині клітинок */
+            padding: 15px;
             text-align: center;
-            border: 1px solid #ddd;  /* Лінії між клітинками */
+            border: 1px solid #ddd;
         }
         th {
-            background-color: #f2f2f2;  /* Легкий фон для заголовків стовпців */
+            background-color: #f2f2f2;
+        }
+        .calendar-container {
+            display: flex;
+            justify-content: space-between; /* Між елементами буде простір */
+            align-items: center; /* Центруємо по вертикалі */
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            font-size: 24px; /* Збільшення розміру стрілок */
         }
     </style>
-    <div>{{ calendar|safe }}</div>
+
+    <div class="calendar-container">
+        <div class="nav-links">
+            <a href="{% url 'calendar_by_month' prev_year prev_month %}">←</a> <!-- Стрілка вліво -->
+        </div>
+
+        <div>{{ calendar|safe }}</div> <!-- Тут сам календар -->
+
+        <div class="nav-links">
+            <a href="{% url 'calendar_by_month' next_year next_month %}">→</a> <!-- Стрілка вправо -->
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Додати подію</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Додати</button>
+    </form>
+    <a href="{% url 'calendar_by_month' year=2025 month=2 %}">Назад до календаря</a>
+{% endblock %}

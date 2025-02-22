@@ -200,11 +200,11 @@ theme.addEventListener('click', () => {
     if (!isplayingtheme) {
         isplayingtheme = true;
         if (getCookie('theme') == 'light') {
-            document.cookie = 'theme=dark;';
+            document.cookie = 'theme=dark; path=/;';
             setTheme('dark');
             themeanim.play();
         } else {
-            document.cookie = 'theme=light;';
+            document.cookie = 'theme=light; path=/;';
             setTheme('light');
             themeanim2.play();
         }

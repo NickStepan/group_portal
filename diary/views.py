@@ -48,7 +48,7 @@ def get_marks(request, student_id=None, date=None):
     
     info = Subject.objects.all()
 
-    days_of_week = [(start_of_week + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]  # Список дат тижня
+    days_of_week = [(start_of_week + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(6)]  # Список дат тижня
     
     # Створюємо словник для зберігання оцінок за кожен день тижня для кожного предмету
     weekly_schedule = {}

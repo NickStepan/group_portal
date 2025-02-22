@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Події на {{ day }}.{{ month }}.{{ year }}</h2>
+
+    {% if events %}
+        <ul>
+            {% for event in events %}
+                <li><strong>{{ event.title }}</strong>: {{ event.description }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Немає подій на цей день.</p>
+    {% endif %}
+
+    <a href="{% url 'calendar_by_month' year month %}">Назад до календаря</a>
+{% endblock %}

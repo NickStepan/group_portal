@@ -1,8 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">login</button>
-    </form>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="width: 400px; border-radius: 15px;">
+        <h2 class="text-center mb-4">Login</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary w-100 animated-btn">Log In</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{% url 'login' %}" style="text-decoration: none;"><button class="btn btn-primary w-100 animated-btn"> sign up</a></button>
+        </div>
+    </div>
+</div>
+<style>
+    .animated-btn, .animated-btn-secondary {
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .animated-btn:hover {
+        transform: scale(1.05);
+        background-color: #0056b3;
+    }
+    .animated-btn-secondary:hover {
+        transform: scale(1.05);
+        background-color: #6c757d;
+    }
+</style>
 {% endblock %}

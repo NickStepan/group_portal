@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'diary',
     'main',
     'calendar_events',  # Додаємо додаток календаря
+    'group',
 ]
 
 

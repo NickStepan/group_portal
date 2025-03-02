@@ -1,0 +1,53 @@
+.logos {
+    position: relative;
+    width: 100%;
+    height: 15vw;
+    background: color-mix(in srgb, var(--el-col) 90%, var(--text-col));
+    border-radius: 3vw;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logos svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+p:not(#logo p) {
+    font-size: 3vh;
+}
+
+h1 {
+    font-size: 6vh;
+    text-align: center;
+}
+
+.advantages {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh;
+    background: color-mix(in srgb, var(--el-col) 90%, var(--text-col));
+    border-radius: 3vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(1, 40vh);
+    gap: 2vh; 
+}
+
+.advantages div svg {
+    position: absolute;
+    top: 50%;
+    left: 5vh;
+    width: 25vh;
+    height: 25vh;
+    transform: translateY(-50%);
+}
+
+.advantages div p {
+    color: black;
+}

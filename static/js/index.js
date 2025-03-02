@@ -213,30 +213,38 @@ theme.addEventListener('click', () => {
 
 detailsElements.forEach(e => {
     let summary = e.querySelector('summary');
-
+    
     let eattr = e.getAttribute('data-t');
-
+    
     e.style.transition = `${eattr}s`;
+    e.opening = false;
     
-    summary.addEventListener('click', (attr => event => {
-        if (e.open) {
+    summary.addEventListener('click', ((attr, time) => event => {
+        console.log(e.opening);
+        
+        if (e.opening) {
             event.preventDefault();
-          
-            setTimeout(() => {
-                e.open = false;
-            }, attr);
+            return;
         }
-    })(parseFloat(eattr) * 1000));
-    
-    summary.addEventListener('click', (attr => event => {
+        
+        e.opening = true;
+
         if (!e.open) {
             e.setAttribute('opened', '');
             e.style.height = `${attr}vh`;
         } else {
+            event.preventDefault();
             e.style.removeProperty('height');
             e.removeAttribute('opened');
+            
+            setTimeout(() => {
+                e.open = false;
+            }, time);
         }
         
-    })(e.getAttribute('data-h')));
+    })(e.getAttribute('data-h'), parseFloat(eattr) * 1000));
 
+    e.addEventListener('transitionend', () => {
+        e.opening = false;
+    });
 });

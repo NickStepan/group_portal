@@ -28,6 +28,7 @@ urlpatterns = [
     path('diary/', include('diary.urls')),
     path('calendar/', include('calendar_events.urls')),  # Підключаємо маршрути календаря
     path('', include('group.urls')),
+    path('', include('userprofile.urls')),
     path('', include('gallery.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

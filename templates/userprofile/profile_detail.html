@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Профіль {{ profile.user.username }}</title>
+</head>
+{% endblock %}
+
+{% block content %}
+<body>
+    <h1>Профіль користувача: {{ profile.user.username }}</h1>
+    {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="Аватар" width="150">
+    {% endif %}
+    <p><strong>Біографія:</strong> {{ profile.bio|default:"Немає біографії" }}</p>
+    <p><strong>Дата народження:</strong> {{ profile.birth_date|default:"Не вказано" }}</p>
+    <p><strong>Місце проживання:</strong> {{ profile.location|default:"Не вказано" }}</p>
+    
+    {% if user.is_authenticated and user == profile.user %}
+        <a href="#">Редагувати профіль</a>
+    {% endif %}
+</body>
+</html>
+{% endblock %}

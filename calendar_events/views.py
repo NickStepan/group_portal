@@ -97,3 +97,4 @@ def mark_completed(request, event_id):
     event.completed = not event.completed
     event.save()
     return redirect('calendar_by_month', year=event.date.year, month=event.date.month)
+    

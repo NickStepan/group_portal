@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Ви дійсно хочете видалити цю подію?</h2>
+  <p><strong>{{ event.title }}</strong> - {{ event.date }}</p>
+  
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Так, видалити</button>
+    <a href="{% url 'calendar_by_month' year=event.date.year month=event.date.month %}">Скасувати</a>
+  </form>
+{% endblock %}

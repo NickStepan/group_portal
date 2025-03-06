@@ -4,35 +4,77 @@
     <h2>Календар та події</h2>
 
     <style>
+        /* Стиль подій */
+        .event-card {
+            background-color: #f8f9fa;
+            border-left: 5px solid #007bff; /* Синій для запланованих подій */
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 14px; /* Розмір шрифту */
+            display: block; /* Перехід на новий рядок */
+            margin-right: 0; /* Забираємо правий відступ */
+            max-width: 100%; /* Встановлюємо максимальну ширину */
+        }
+
+        /* Для виконаних подій */
+        .completed-event {
+            border-left: 5px solid #6f42c1; /* Фіолетовий колір */
+            background-color: #f1f1f1; /* Легкий фон для виконаної події */
+        }
+
+        /* Кнопки з іконками */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        button i {
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #b02a37;
+        }
+
+        /* Стилізовані стрілки для навігації */
+        .nav-links a {
+            font-size: 40px; /* Розмір стрілок */
+            color: #007bff; /* Синій колір для стрілок */
+            padding: 10px;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            color: #007bff; /* При наведенні прибираємо фон */
+            transform: scale(1.2); /* Легке збільшення при ховері */
+        }
+
+        /* Стиль календаря */
         .calendar-container {
             position: relative;
             display: flex;
-            justify-content: flex-start;
-            align-items: center;
+            justify-content: space-between; /* Розподіляємо простір між календарем і контейнером подій */
             padding: 20px;
             margin: 20px;
-        }
-
-        .nav-links {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 35px;
-        }
-
-        .nav-links.left {
-            left: -28px;
-        }
-
-        .nav-links.right {
-            right: 1100px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px;
-            display: block;
         }
 
         .calendar-container table {
@@ -49,17 +91,125 @@
         .calendar-container th {
             background-color: #f4f4f4;
         }
+
+        .calendar-container .nav-links {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .calendar-container .nav-links.left {
+            left: -40px;
+        }
+
+        .calendar-container .nav-links.right {
+            right: 1100px; /* Зсув стрілки праворуч */
+        }
+
+        /* Контейнер для подій */
+        .events-container {
+            display: flex;
+            justify-content: space-between; /* Ліворуч заплановані події, праворуч виконані */
+            margin-top: 20px;
+            padding-left: 40px; /* Більший лівий відступ */
+        }
+
+        /* Стиль для запланованих подій */
+        .planned-events {
+            display: flex;
+            flex-direction: column; /* Розміщуємо події вертикально */
+            flex: 1;
+            margin-right: 50px; /* Збільшений відступ між колонками */
+        }
+
+        /* Стиль для виконаних подій */
+        .completed-events {
+            display: flex;
+            flex-direction: column; /* Розміщуємо події вертикально */
+            flex: 1;
+        }
     </style>
-    
+
     <div class="calendar-container">
         <div class="nav-links left">
-            <a href="{% url 'calendar_by_month' prev_year prev_month %}">←</a>
+            <a href="{% url 'calendar_by_month' prev_year prev_month %}">
+                <!-- SVG-іконка для стрілки вліво -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30" height="30">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </a>
         </div>
 
         <div>{{ calendar|safe }}</div>
 
         <div class="nav-links right">
-            <a href="{% url 'calendar_by_month' next_year next_month %}">→</a>
+            <a href="{% url 'calendar_by_month' next_year next_month %}">
+                <!-- SVG-іконка для стрілки вправо -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30" height="30">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Контейнер для подій -->
+        <div class="events-container">
+            <!-- Заплановані події -->
+            <div class="planned-events">
+                <h3>Заплановані події:</h3>
+                {% if events %}
+                    <ul>
+                        {% for event in events %}
+                            <li class="event-card">
+                                <strong>{{ event.date.day }} {{ month_name_gen }} {{ event.date.year }}:</strong>
+                                <span>{{ event.title }}</span> - {{ event.description }}
+
+                                <!-- Чекбокс для позначення виконаних подій -->
+                                <form action="{% url 'mark_completed' event.id %}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="checkbox" onchange="this.form.submit()">
+                                </form>
+
+                                <!-- Кнопка для видалення події -->
+                                <form action="{% url 'delete_event' event.id %}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete-btn"><i class="fa fa-trash"></i> Видалити</button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Немає запланованих подій у цьому місяці.</p>
+                {% endif %}
+            </div>
+
+            <!-- Виконані події -->
+            <div class="completed-events">
+                <h3>Виконані події:</h3>
+                {% if completed_events %}
+                    <ul>
+                        {% for event in completed_events %}
+                            <li class="event-card completed-event">
+                                <strong>{{ event.date.day }} {{ month_name_gen }} {{ event.date.year }}:</strong>
+                                <span>{{ event.title }}</span> - {{ event.description }}
+
+                                <!-- Чекбокс для скасування виконання -->
+                                <form action="{% url 'mark_completed' event.id %}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="checkbox" checked onchange="this.form.submit()">
+                                </form>
+
+                                <!-- Кнопка для видалення виконаної події -->
+                                <form action="{% url 'delete_event' event.id %}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete-btn"><i class="fa fa-trash"></i> Видалити</button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Немає виконаних подій.</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 
@@ -72,21 +222,4 @@
         </form>
     </div>
 
-    <div>
-        <h3>Події на цей місяць</h3>
-        {% if events %}
-            <ul>
-                {% for event in events %}
-                    <li>
-                        <strong>{{ event.date }}:</strong>
-                        <a href="{% url 'calendar_by_day' year=event.date.year month=event.date.month day=event.date.day %}">
-                            {{ event.title }}
-                        </a> - {{ event.description }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Немає подій у цьому місяці.</p>
-        {% endif %}
-    </div>
 {% endblock %}

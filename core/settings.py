@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'diary',
     'main',
     'calendar_events',
+    'portfolio',
 ]
 
 

@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<body>
     <h2>Календар та події</h2>
     
     <style>
         
         /* Стиль подій */
         .event-card {
-            background-color: var(--card-color);
+            background-color: var(--bg-col);
             border-left: 5px solid #007bff; /* Синій для запланованих подій */
             padding: 10px;
             margin-bottom: 8px;
@@ -25,7 +24,7 @@
         /* Для виконаних подій */
         .completed-event {
             border-left: 5px solid #6f42c1; /* Фіолетовий колір */
-            background-color: var(--card-color); /* Легкий фон для виконаної події */
+            background-color: var(--bg-col); /* Легкий фон для виконаної події */
             
         }
 
@@ -94,7 +93,7 @@
         }
 
         .calendar-container th {
-            background-color: #f4f4f4;
+            background: color-mix(in srgb, var(--bg-col) 90%, var(--text-col));
         }
 
         .calendar-container .nav-links {
@@ -226,5 +225,4 @@
             <button type="submit">Додати подію</button>
         </form>
     </div>
-</body>
 {% endblock %}

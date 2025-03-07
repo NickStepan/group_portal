@@ -25,7 +25,6 @@
         .completed-event {
             border-left: 5px solid #6f42c1; /* Фіолетовий колір */
             background-color: var(--bg-col); /* Легкий фон для виконаної події */
-            
         }
 
         /* Кнопки з іконками */
@@ -77,14 +76,28 @@
             position: relative;
             display: flex;
             justify-content: space-between; /* Розподіляємо простір між календарем і контейнером подій */
-            padding: 20px;
-            margin: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .calendar {
+            position: relative;
+            width: 400px;
+
+        }
+        
+        ul {
+            padding: 0;
         }
 
         .calendar-container table {
+            position: relative;
             border-collapse: collapse;
             width: auto;
             text-align: center;
+            left: 50%;
+            transform: translateX(-50%);
+
         }
 
         .calendar-container th, .calendar-container td {
@@ -93,7 +106,7 @@
         }
 
         .calendar-container th {
-            background: color-mix(in srgb, var(--bg-col) 90%, var(--text-col));
+            background-color: color-mix(in srgb, var(--bg-col) 90%, var(--text-col));
         }
 
         .calendar-container .nav-links {
@@ -103,11 +116,17 @@
         }
 
         .calendar-container .nav-links.left {
-            left: -40px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
         }
 
         .calendar-container .nav-links.right {
-            right: 1100px; /* Зсув стрілки праворуч */
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
         }
 
         /* Контейнер для подій */
@@ -124,6 +143,8 @@
             flex-direction: column; /* Розміщуємо події вертикально */
             flex: 1;
             margin-right: 50px; /* Збільшений відступ між колонками */
+            height: 250px;
+            overflow: auto;
         }
 
         /* Стиль для виконаних подій */
@@ -131,30 +152,33 @@
             display: flex;
             flex-direction: column; /* Розміщуємо події вертикально */
             flex: 1;
+            height: 250px;
+            overflow: auto;
         }
     </style>
 
     <div class="calendar-container">
-        <div class="nav-links left">
-            <a href="{% url 'calendar_by_month' prev_year prev_month %}">
-                <!-- SVG-іконка для стрілки вліво -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30" height="30">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </a>
+        <div class="calendar">
+            <div class="nav-links left">
+                <a href="{% url 'calendar_by_month' prev_year prev_month %}">
+                    <!-- SVG-іконка для стрілки вліво -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30" height="30">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div>{{ calendar|safe }}</div>
+
+            <div class="nav-links right">
+                <a href="{% url 'calendar_by_month' next_year next_month %}">
+                    <!-- SVG-іконка для стрілки вправо -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30" height="30">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
-
-        <div>{{ calendar|safe }}</div>
-
-        <div class="nav-links right">
-            <a href="{% url 'calendar_by_month' next_year next_month %}">
-                <!-- SVG-іконка для стрілки вправо -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="30" height="30">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
-        </div>
-
         <!-- Контейнер для подій -->
         <div class="events-container">
             <!-- Заплановані події -->

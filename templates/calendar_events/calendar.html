@@ -2,8 +2,9 @@
 
 {% block content %}
     <h2>Календар та події</h2>
-
+    
     <style>
+        
         /* Стиль подій */
         .event-card {
             background-color: var(--bg-col);
@@ -17,6 +18,8 @@
             margin-right: 0; /* Забираємо правий відступ */
             max-width: 100%; /* Встановлюємо максимальну ширину */
         }
+
+        
 
         /* Для виконаних подій */
         .completed-event {
@@ -246,5 +249,4 @@
             <button type="submit">Додати подію</button>
         </form>
     </div>
-
 {% endblock %}

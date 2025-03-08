@@ -4,4 +4,4 @@ from utils import setup_context
 
 
 def index(request: HttpRequest):
-    return render(request, 'base.html', context=setup_context(request))
+    return render(request, 'main/index.html', context=setup_context(request))

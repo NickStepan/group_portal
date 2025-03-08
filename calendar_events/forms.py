@@ -5,6 +5,11 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'description', 'date']
+        labels = {
+            'title': 'Назва події:',
+            'description': 'Опис:',
+            'date': 'Дата проведення:'
+        }
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'})  # Дозволяє вибрати дату
+            'date': forms.DateInput(attrs={'type': 'date'})  # Віджет вибору дати
         }

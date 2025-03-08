@@ -1,4 +1,3 @@
-from copy import deepcopy
 from django.http import HttpRequest
 from .data import UserData, CookieData
 
@@ -19,7 +18,6 @@ def setup_context(request, context: dict | None = None) -> dict:
     if context is None:
         return cookies
 
-    context = deepcopy(context)
     context.update(cookies)
 
     return context

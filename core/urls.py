@@ -17,11 +17,20 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('calendar/', include('calendar_events.urls')),  # Маршрути для календаря
     path('', include('auth_system.urls')),
     path('', include('main.urls')),
+    path('forum/', include('forum.urls')),
     path('', include('diary.urls')),
-]
+    path('', include('portfolio.urls')),
+    path('calendar/', include('calendar_events.urls')),  # Підключаємо маршрути календаря
+    path('', include('group.urls')),
+    path('', include('gallery.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

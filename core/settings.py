@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'diary',
     'forum',
     'main',
-    'calendar_events',
+    'portfolio',
+    'calendar_events',  # Додаємо додаток календаря
+    'group',
+    'gallery',
+
 ]
 
 
@@ -154,3 +158,6 @@ TEMPLATES = [
 ]
 LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = '/'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

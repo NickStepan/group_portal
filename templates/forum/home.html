@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block head %}
+<!DOCTYPE html>
+<html>
+<head><title>Форум</title></head>
+{% endblock %}
+{% block content %}
+<body>
+    <h1>Список тем</h1>
+    <ul>
+        {% for topic in topics %}
+            <li><a href="{% url 'topic_detail' topic.id %}">{{ topic.title }}</a> - {{ topic.author }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_topic' %}">Створити тему</a>
+</body>
+</html>
+{% endblock %}

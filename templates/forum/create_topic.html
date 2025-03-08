@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block head %}
+<!DOCTYPE html>
+<html>
+<head><title>Створення теми</title></head>
+{% endblock %}
+{% block content %}
+<body>
+    <h1>Створити тему</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Опублікувати</button>
+    </form>
+    <a href="{% url 'forum_home' %}">Назад</a>
+</body>
+</html>
+{% endblock %}

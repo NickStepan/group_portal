@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head %}
+<!DOCTYPE html>
+<html>
+<head><title>{{ topic.title }}</title></head>
+{% endblock %}
+{% block content %}
+<body>
+    <h1>{{ topic.title }}</h1>
+    <p>{{ topic.content }}</p>
+    <p>Автор: {{ topic.author }}</p>
+    <h2>Коментарі</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }} - {{ comment.author }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Додати коментар</button>
+    </form>
+    <a href="{% url 'forum_home' %}">Назад</a>
+</body>
+</html>
+{% endblock %}

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'auth_system',
     'diary',
+    'forum',
     'main',
     'portfolio',
     'calendar_events',  # Додаємо додаток календаря

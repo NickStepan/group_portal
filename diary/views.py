@@ -27,18 +27,18 @@ def diary_view(request):
 
 
 
-def get_marks(request):
-    student_id = use
+def get_marks_student(request):
+    student_id = request.user.id
     today = timezone.now().date()       # Отримуємо поточну дату
 
     start_of_week = today - timedelta(days=today.weekday())  # Понеділок        # Визначаємо дату початку тижня (неділя)
     end_of_week = start_of_week + timedelta(days=6)  # Неділля      # Визначаємо дату закінчення тижня (неділя)
     
     try:
-        student = Student.objects.get(pk=1) #pk=student_id
+        student = Student.objects.get(pk=student_id) #pk=student_id
     except Student.DoesNotExist:
         # Обробка помилки, якщо студента не знайдено
-        return render(request, 'student_not_found.html')  # Створіть відповідний шаблон
+        return render(request, 'diary/student_not_found.html')  # Створіть відповідний шаблон
     
     # Отримуємо оцінки за тиждень
     marks = Mark.objects.filter(day__range=(start_of_week, end_of_week)).select_related('student', 'subject')  # Отримуємо оцінки
@@ -74,9 +74,67 @@ def get_marks(request):
             "s":(start_of_week + timedelta(days=5)).strftime("%d.%m"),
         }
     }
-    return render(request, 'diary/diary.html', context)
+    return render(request, 'diary/diary_student.html', context)
 
-
+'''
+def get_marks_group(request):
+    today = timezone.now().date()
+    start_of_week = today - timedelta(days=today.weekday())  # Початок тижня (понеділок)
+    end_of_week = start_of_week + timedelta(days=6)  # Кінець тижня (неділя)
+    
+    try:
+        # Отримуємо всіх студентів у групі
+        students = Grop.objects.filter(group_id=student).order_by('last_name', 'first_name')
+        if not students.exists():
+            return render(request, 'diary/group_empty.html')  # Шаблон для порожньої групи
+    except Exception:
+        return render(request, 'diary/group_not_found.html')  # Шаблон для неіснуючої групи
+    
+    # Отримуємо всі предмети
+    subjects = Subject.objects.all()
+    
+    # Список дат тижня
+    days_of_week = [(start_of_week + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(6)]
+    
+    # Створюємо словник для зберігання оцінок усієї групи
+    group_schedule = {}
+    
+    for student in students:
+        group_schedule[student] = {}
+        for subject in subjects:
+            group_schedule[student][subject] = {}
+            for day in days_of_week:
+                try:
+                    mark = Mark.objects.get(
+                        student=student,
+                        subject=subject,
+                        day=day
+                    )
+                    group_schedule[student][subject][day] = {
+                        'mark': mark.mark,
+                        'is_final': mark.is_final
+                    }
+                except Mark.DoesNotExist:
+                    group_schedule[student][subject][day] = None
+    
+    context = {
+        'group_id': group_id,
+        'students': students,
+        'subjects': subjects,
+        'group_schedule': group_schedule,
+        'days_of_week': days_of_week,
+        'days': {
+            'm': start_of_week.strftime("%d.%m"),
+            't': (start_of_week + timedelta(days=1)).strftime("%d.%m"),
+            'w': (start_of_week + timedelta(days=2)).strftime("%d.%m"),
+            'th': (start_of_week + timedelta(days=3)).strftime("%d.%m"),
+            'f': (start_of_week + timedelta(days=4)).strftime("%d.%m"),
+            's': (start_of_week + timedelta(days=5)).strftime("%d.%m"),
+        }
+    }
+    
+    return render(request, 'diary/diary_group.html', context)
+'''
 
 from django.http import HttpResponse
 from auth_system.models import CustomUser

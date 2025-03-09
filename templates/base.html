@@ -20,6 +20,7 @@
                 --el-col: white;
                 --theme-col: white;
                 --mix-percentage: 20%;
+                --card-color: #555555;
             {% else %}
                 --bg-col: gray;
                 --head-col: #590059;
@@ -27,6 +28,7 @@
                 --el-col: white;
                 --theme-col: black;
                 --mix-percentage: 40%;
+
             {% endif %}
         }
 
@@ -89,11 +91,7 @@
             <div class="items">
                 <details data-h="30" data-t="0.7">
                     <summary role="button">&#xE002 Акаунт</summary>
-<<<<<<< HEAD
-                    <div role="button"><a href="{% url 'my_profile' %}">Профіль</a></div>
-=======
                     <div role="button"><a href="portfolio/">Профіль</a></div>
->>>>>>> e87132e4762647b54a61be9b47b4d4b4bf176874
                     <div role="button">Налаштування акаунту</div>
                     <div role="button">Приватність і безпека</div>
                     <div role="button">Вийти</div>

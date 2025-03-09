@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="132.29167mm"
+   height="132.29167mm"
+   viewBox="0 0 132.29168 132.29167"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="functionality.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0881594"
+     inkscape:cx="162.58337"
+     inkscape:cy="248.54424"
+     inkscape:window-width="2560"
+     inkscape:window-height="1476"
+     inkscape:window-x="-12"
+     inkscape:window-y="-12"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Шар 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path2"
+       style="fill:#000000;stroke-width:16.6419;stroke-dashoffset:1757.48"
+       inkscape:transform-center-x="-0.13510268"
+       inkscape:transform-center-y="-3.3165113"
+       d="M -92.175032 -68.694907 C -117.76479 -69.034376 -96.293946 -55.347424 -117.19603 -40.580779 C -138.09811 -25.814134 -143.82368 -50.624791 -152.0542 -26.392388 C -160.28472 -2.1599857 -140.633 -18.350602 -133.04818 6.0916038 C -125.46336 30.53381 -150.82888 28.312105 -130.32587 43.628023 C -109.82286 58.94394 -119.14869 35.251115 -93.558932 35.590583 C -67.969175 35.930052 -77.919769 59.367502 -57.017686 44.600857 C -36.115604 29.834212 -61.530985 31.38195 -53.300461 7.1495472 C -45.069937 -17.082855 -25.854676 -0.37651265 -33.439491 -24.818719 C -41.024306 -49.260925 -47.406248 -24.611045 -67.909261 -39.926962 C -88.412274 -55.24288 -66.585276 -68.355438 -92.175032 -68.694907 z M -92.845112 -32.583922 A 26.188654 25.310722 0 0 1 -66.656578 -7.273316 A 26.188654 25.310722 0 0 1 -92.845112 18.03729 A 26.188654 25.310722 0 0 1 -119.03365 -7.273316 A 26.188654 25.310722 0 0 1 -92.845112 -32.583922 z "
+       transform="matrix(0.88610606,0,0,0.91684169,148.41645,75.460146)" />
+  </g>
+</svg>

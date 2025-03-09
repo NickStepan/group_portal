@@ -35,7 +35,8 @@ def get_marks_student(request):
     end_of_week = start_of_week + timedelta(days=6)  # Неділля      # Визначаємо дату закінчення тижня (неділя)
     
     try:
-        student = Student.objects.get(pk=5) #pk=student_id
+
+        student = Student.objects.get(pk=student_id) #pk=student_id
     except Student.DoesNotExist:
         # Обробка помилки, якщо студента не знайдено
         return render(request, 'diary/student_not_found.html')  # Створіть відповідний шаблон

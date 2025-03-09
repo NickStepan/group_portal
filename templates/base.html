@@ -36,6 +36,25 @@
             font-family: 'Icons';
             src: url("{% static 'fonts/ArialIcons.ttf' %}") format('truetype');
         }
+        /* Стилі для кнопки "Вийти", із файлу style.css не бачить ці зміни */
+        .logout-btn {
+            padding: 6px 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: #f44336; /* Червоний колір для "Вийти" */
+            color: white;
+            text-decoration: none; /* Щоб текст не підкреслювався */
+            display: inline-block; /* Для коректного відображення у формі */
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f; /* Темніший червоний при наведенні */
+        }
+
+        
     </style>
 </head>
 <body>
@@ -72,7 +91,12 @@
             </noscript>
         </div>
         <div id="user" title="Мій акаунт">
+            {% if user.is_authenticated %}
+            <img src="{{ user.image.url }}" style="z-index: 100; position: relative; width: 100px; height: 100px;">
+            {% else %}
             <input type="checkbox">
+            {% endif %}
+
             <div>
                 &#xE002
             </div>
@@ -91,17 +115,19 @@
                 <details data-h="30" data-t="0.7">
                     <summary role="button">&#xE002 Акаунт</summary>
                     {% if user.is_authenticated %}
-                        <div role="button"><a href="{% url 'portfolio' %}" style="text-decoration: none;">Профіль</a></div>
+                        <div role="button"><a href="{% url 'profile' %}" style="text-decoration: none;">Профіль</a></div>
                         <div role="button"><a href="{% url 'calendar_redirect' %}" style="text-decoration: none;"> Календар</a></div>
                         <div role="button"><a href="{% url 'gallery' %}" style="text-decoration: none;"> Галерея</a></div>
-                        <form method="post" action="{% url 'logout' %}" onsubmit="return confirm('Ви впевнені, що хочете вийти?');">
+                        <div role="button"><a href="{% url 'news' %}" style="text-decoration: none;">Новини</a></div>
+                        <div role="button"><form method="post" action="{% url 'logout' %}" onsubmit="return confirm('Ви впевнені, що хочете вийти?');">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Вийти</button>
-                        </form>
+                            <button type="submit" class="logout-btn">Вийти</button>
+                        </form></div>
                     {% else %}
                         <div role="button"><a href="{% url 'register' %}" style="text-decoration: none;">Профіль</a></div>
                         <div role="button"><a href="{% url 'register' %}" style="text-decoration: none;"> Календар</a></div>
                         <div role="button"><a href="{% url 'register' %}" style="text-decoration: none;"> Галерея</a></div>
+                        <div role="button"><a href="{% url 'register' %}" style="text-decoration: none;">Новини</a></div>
                     {% endif %}
                     
                     

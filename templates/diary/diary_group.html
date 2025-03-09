@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block head %}
+<head>
+    {% load keys %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Щоденник групи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 50px;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px 0;
+        }
+        select {
+            padding: 8px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        td {
+            color: #666;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.3s;
+        }
+        h1 {
+            text-align: center;
+            color: black;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <h1>Щоденник групи</h1>
+        
+        <!-- Вибір предмету -->
+        <select id="subject-select" onchange="filterBySubject()">
+            <option value="">Виберіть предмет</option>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.title }}</option>
+            {% endfor %}
+        </select>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Студент</th>
+                    <th>Пн ({{ days|get_key:"m" }})</th>
+                    <th>Вт ({{ days|get_key:"t" }})</th>
+                    <th>Ср ({{ days|get_key:"w" }})</th>
+                    <th>Чт ({{ days|get_key:"th" }})</th>
+                    <th>Пт ({{ days|get_key:"f" }})</th>
+                    <th>Сб ({{ days|get_key:"s" }})</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student, subjects_data in group_schedule.items %}
+                    <tr data-student="{{ student.id }}">
+                        <td>{{ student.last_name }} {{ student.first_name }}</td>
+                        {% for day in days_of_week %}
+                            <td>
+                                {% for subject, marks in subjects_data.items %}
+                                    {% if marks|get_key:day %}
+                                        <span class="mark" data-subject="{{ subject.id }}">
+                                            {% if marks|get_key:day|get_key:"is_final" %}
+                                                {{ marks|get_key:day|get_key:"mark" }}
+                                            {% else %}
+                                                ({{ marks|get_key:day|get_key:"mark" }})
+                                            {% endif %}
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if not subjects_data|dictsort:day|length %}
+                                    -
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterBySubject() {
+            const selectedSubject = document.getElementById('subject-select').value;
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const marks = row.querySelectorAll('.mark');
+                let hasVisibleMark = false;
+                
+                marks.forEach(mark => {
+                    if (selectedSubject === '' || mark.dataset.subject === selectedSubject) {
+                        mark.style.display = 'inline';
+                        hasVisibleMark = true;
+                    } else {
+                        mark.style.display = 'none';
+                    }
+                });
+                
+                // Показуємо '-' якщо немає видимих оцінок
+                const cells = row.querySelectorAll('td:not(:first-child)');
+                cells.forEach(cell => {
+                    if (!cell.querySelector('.mark[style="display: inline;"]')) {
+                        cell.innerHTML = cell.querySelector('.mark') ? '' : '-';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+{% endblock %}

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'portfolio',
     'calendar_events',  # Додаємо додаток календаря
     'group',
-    'userprofile',
     'gallery',
     'news',
 

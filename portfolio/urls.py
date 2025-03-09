@@ -1,6 +1,6 @@
-from django.urls import path, include
-from .views import chek
+from django.urls import path
+from .views import PortfolioView
 
 urlpatterns = [
-    path('/', chek),
+    path('portfolio/', PortfolioView.as_view(), name='portfolio'),
 ]

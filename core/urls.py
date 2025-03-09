@@ -25,12 +25,14 @@ urlpatterns = [
     path('calendar/', include('calendar_events.urls')),  # Маршрути для календаря
     path('', include('auth_system.urls')),
     path('', include('main.urls')),
+    path('forum/', include('forum.urls')),
     path('', include('diary.urls')),
-    path('portfolio', include('portfolio.urls')),
+    path('', include('portfolio.urls')),
     path('calendar/', include('calendar_events.urls')),  # Підключаємо маршрути календаря
     path('', include('group.urls')),
     path('', include('userprofile.urls')),
     path('', include('gallery.urls')),
+    path('', include('news.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

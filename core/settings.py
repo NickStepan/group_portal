@@ -40,20 +40,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'auth_system',
     'diary',
+    'forum',
     'main',
     'portfolio',
     'calendar_events',  # Додаємо додаток календаря
     'group',
     'userprofile',
     'gallery',
+    'news',
 
 ]
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

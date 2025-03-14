@@ -28,7 +28,7 @@ def diary_view(request):
 
 
 def get_marks(request):
-    student_id = use
+    student_id = request.user.id
     today = timezone.now().date()       # Отримуємо поточну дату
 
     start_of_week = today - timedelta(days=today.weekday())  # Понеділок        # Визначаємо дату початку тижня (неділя)

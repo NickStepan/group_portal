@@ -42,10 +42,6 @@ class Mark(models.Model):
     def __str__(self):
         return f"{self.student} {self.subject} {self.mark}"
     
-# class Day(models.Model):
-#     day = models.IntegerField() #День місяця 1до31
-#     month = models.IntegerField()
-#     "Створити день і прив'язати до нього предмети"
 
 class Diary(models.Model):
     day = models.DateField()

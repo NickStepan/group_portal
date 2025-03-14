@@ -192,7 +192,6 @@ function setTheme(theme) {
         document.documentElement.style.setProperty('--text-col', 'white');
         document.documentElement.style.setProperty('--el-col', 'white');
         document.documentElement.style.setProperty('--theme-col', 'black');
-        document.documentElement.style.setProperty('--mix-percentage', '40%');
     }
 }
 

@@ -9,7 +9,7 @@ def get_default_dict():
 
 class CustomUser(AbstractUser):
     settings = models.JSONField(default=get_default_dict)
-    # image = models.ImageField(upload_to='profile_pics/', default='default.jpg')
+    image = models.ImageField(upload_to='profile/', default='default.jpg')
     profession = models.CharField(max_length=100, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)

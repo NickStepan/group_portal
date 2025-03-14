@@ -20,6 +20,7 @@
                 --el-col: white;
                 --theme-col: white;
                 --mix-percentage: 20%;
+                --card-color: #555555;
             {% else %}
                 --bg-col: gray;
                 --head-col: #590059;
@@ -27,6 +28,7 @@
                 --el-col: white;
                 --theme-col: black;
                 --mix-percentage: 40%;
+
             {% endif %}
         }
 
@@ -39,7 +41,7 @@
 <body>
     <header>
         <div id="blur"></div>
-        <div id="logo" title="Логтип">
+        <div id="logo" title="Логотип">
             <div>
                 <noscript>
                     {% loadsvg 'graphics/svg/logo.svg' %}
@@ -88,12 +90,23 @@
             <div class="items">
                 <details data-h="30" data-t="0.7">
                     <summary role="button">&#xE002 Акаунт</summary>
-                    <div role="button"><a href="portfolio/">Профіль</a></div>
-                    <div role="button">Налаштування акаунту</div>
-                    <div role="button">Приватність і безпека</div>
-                    <div role="button">Вийти</div>
+                    {% if user.is_authenticated %}
+                        <div role="button"><a href="{% url 'portfolio' %}" style="text-decoration: none;">Профіль</a></div>
+                        <div role="button"><a href="{% url 'calendar_redirect' %}" style="text-decoration: none;"> Календар</a></div>
+                        <div role="button"><a href="{% url 'gallery' %}" style="text-decoration: none;"> Галерея</a></div>
+                        <form method="post" action="{% url 'logout' %}" onsubmit="return confirm('Ви впевнені, що хочете вийти?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Вийти</button>
+                        </form>
+                    {% else %}
+                        <div role="button"><a href="{% url 'register' %}" style="text-decoration: none;">Профіль</a></div>
+                        <div role="button"><a href="{% url 'register' %}" style="text-decoration: none;"> Календар</a></div>
+                        <div role="button"><a href="{% url 'register' %}" style="text-decoration: none;"> Галерея</a></div>
+                    {% endif %}
+                    
+                    
                 </details>
-                <div><a href="{% url 'gallery' %}"> Галерея</a></div>
+                
             </div>
         </nav>
     </header>

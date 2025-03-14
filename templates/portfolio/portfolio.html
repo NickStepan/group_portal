@@ -4,24 +4,24 @@
     <div class="card shadow-lg p-4" style="width: 600px; border-radius: 15px;">
         <h2 class="text-center mb-4">My Portfolio</h2>
         <div class="text-center">
-            <img id="profile-picture" src="{{ user.profile.image.url }}" class="rounded-circle mb-3" alt="Profile Picture" width="150">
+            <img id="profile-picture" src="{{ user.image.url }}" class="rounded-circle mb-3" alt="Profile Picture" width="150">
             <form id="image-upload-form" method="post" enctype="multipart/form-data" class="mt-2">
                 {% csrf_token %}
                 <input type="file" id="image-input" name="profile_image" class="form-control mb-2">
                 <button type="button" id="upload-button" class="btn btn-primary">Change Picture</button>
             </form>
-            <h4>{{ user.first_name }} {{ user.last_name }}</h4>
-            <p class="text-muted">{{ user.profile.profession }}</p>
-            <input type="text" class="form-control mt-2" placeholder="Enter profession" value="{{ user.profile.profession }}">
+            <h4>{{ user.username }} {{ user.last_name }}</h4>
+            <p class="text-muted">{{ user.profession }}</p>
+            <input type="text" class="form-control mt-2" placeholder="Enter profession" value="{{ user.profession }}">
         </div>
         <hr>
         <h5>About Me</h5>
-        <p>{{ user.profile.about }}</p>
-        <textarea class="form-control mt-2" placeholder="Enter about me">{{ user.profile.about }}</textarea>
+        <p>{{ user.about }}</p>
+        <textarea class="form-control mt-2" placeholder="Enter about me">{{ user.about }}</textarea>
         <hr>
         <h5>Projects</h5>
         <ul>
-            {% for project in user.profile.projects.all %}
+            {% for project in user.projects.all %}
                 <li>
                     <strong>{{ project.title }}</strong> - <a href="{{ project.link }}" target="_blank">View Project</a>
                     <input type="text" class="form-control mt-2" placeholder="Enter project title" value="{{ project.title }}">
@@ -37,8 +37,8 @@
         <h5>Contact</h5>
         <p>Email: {{ user.email }}</p>
         <input type="email" class="form-control mt-2" placeholder="Enter email" value="{{ user.email }}">
-        <p>LinkedIn: <a href="{{ user.profile.linkedin }}" target="_blank">{{ user.profile.linkedin }}</a></p>
-        <input type="text" class="form-control mt-2" placeholder="Enter LinkedIn profile" value="{{ user.profile.linkedin }}">
+        <p>LinkedIn: <a href="{{ user.linkedin }}" target="_blank">{{ user.linkedin }}</a></p>
+        <input type="text" class="form-control mt-2" placeholder="Enter LinkedIn profile" value="{{ user.linkedin }}">
 
     </div>
 </div>

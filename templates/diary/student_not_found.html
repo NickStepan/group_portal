@@ -1,17 +1,75 @@
 {% extends "base.html" %}
 {% block head %}
     {% load keys %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студента не знайдено</title>
     <style>
-    table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse; /* Об'єднує рамки */
-    }
-    th, td {
-      padding: 5px;  /* Додає відступи для кращого вигляду */
-    }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .register-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .register-btn:hover {
+            background-color: #45a049;
+        }
+        .login-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+        .login-btn:hover {
+            background-color: #1e87db;
+        }
     </style>
+</head>
 {% endblock %}
 
 {% block content %}
-    
+<body>
+  <div class="container">
+      <h1>Студента не знайдено</h1>
+      <p>На жаль, ми не змогли знайти ваш профіль. Ви можете зареєструватися або увійти в існуючий акаунт.</p>
+      <div class="buttons">
+          <button class="register-btn" onclick="window.location.href='/register'">Зареєструватися</button>
+          <button class="login-btn" onclick="window.location.href='/login'">Увійти</button>
+      </div>
+  </div>
+</body>
 {% endblock %}

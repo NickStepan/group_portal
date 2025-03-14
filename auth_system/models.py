@@ -15,4 +15,4 @@ class CustomUser(AbstractUser):
     linkedin = models.URLField(blank=True, null=True)
 
     def __str__(self):
-        return f'{self.username} Profile'
+        return f'{self.username}'

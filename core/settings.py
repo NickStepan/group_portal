@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'diary',
     'forum',
     'main',
-    'portfolio',
     'calendar_events',  # Додаємо додаток календаря
     'group',
     'gallery',

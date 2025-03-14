@@ -39,11 +39,11 @@
 <h1 class="title">
     Новини
 </h1>
-{% for new in news %}
-<div class="new">
-    <h2>{{ new.title }}</h2>
-    <p>{{ new.content }}</p>
-</div>
-{% endfor %}
+    {% for new in news %}
+    <div class="new">
+        <h2>{{ new.title }}</h2>
+        <p>{{ new.content }}</p>
+    </div>
+    {% endfor %}
 
 {% endblock %}

@@ -3,8 +3,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
-
-
 from auth_system.forms import CustomUserCreationForm
 
 

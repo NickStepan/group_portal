@@ -29,3 +29,15 @@ class UserLogoutView(LogoutView):
     
 class ProfileView(TemplateView):
     template_name = 'portfolio/portfolio.html'
+
+
+
+#@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        if 'profile_image' in request.FILES:
+            user.image = request.FILES['profile_image']
+            user.save()
+        return redirect('/profile')  # Повертаємося на сторінку портфоліо
+    return render(request, 'portfolio/portfolio.html', {'user': request.user})

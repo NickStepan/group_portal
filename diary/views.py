@@ -25,8 +25,6 @@ def diary_view(request):
     }
     return render(request, 'diary/diary.html', context)
 
-
-
 def get_marks_student(request):
     student_id = request.user.id
     today = timezone.now().date()       # Отримуємо поточну дату

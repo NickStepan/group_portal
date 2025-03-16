@@ -19,8 +19,8 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ['username', 'password1', 'password2']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def init(self, args, **kwargs):
+        super().init(args, **kwargs)
 
         self.fields['password1'].widget = CustomPasswordWidget(attrs={
             'class': 'password-input',
